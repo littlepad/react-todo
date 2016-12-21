@@ -1,6 +1,6 @@
-const gulp = require('gulp');
-const PATH = require('./config').default;
-const eslint = require('gulp-eslint');
+import gulp from 'gulp';
+import PATH from './config';
+import eslint from 'gulp-eslint';
 
 export function lint() {
   return gulp.src([`${PATH.js}**/*.js`])

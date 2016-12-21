@@ -1,6 +1,6 @@
-const gulp = require('gulp');
-const webpack = require('gulp-webpack');
-const config = require('../webpack.config');
+import gulp from 'gulp';
+import webpack from 'gulp-webpack';
+import config from '../webpack.config';
 
 export default function js() {
   return gulp.src(config.entry.app)

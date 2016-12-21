@@ -1,13 +1,13 @@
-const gulp = require('gulp');
-const PATH = require('./config').default;
-const browserSync = require('browser-sync');
+import gulp from 'gulp';
+import PATH from './config';
+import browserSync from 'browser-sync';
 
-export default function server() {
+export default function server () {
   return gulp.task('server', () => {
-      browserSync.init({
-        server: PATH.public,
-        notify: false,
-      });
+    browserSync.init({
+      server: PATH.public,
+      notify: false,
     });
+  });
 }
 

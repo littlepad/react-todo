@@ -1,7 +1,8 @@
-const gulp = require('gulp');
-const server = require('./gulp/browserSync').default;
-const js = require('./gulp/webpack').default;
-const { lint, devLint } = require('./gulp/eslint');
+import gulp from 'gulp';
+import PATH from './gulp/config';
+import server from './gulp/browserSync';
+import js from './gulp/webpack';
+import { lint, devLint } from './gulp/eslint';
 
 gulp.task('server', () => server());
 gulp.task('js', () => js());
