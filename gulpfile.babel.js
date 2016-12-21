@@ -10,6 +10,7 @@ gulp.task('lint', () => lint());
 gulp.task('devLint', () => devLint());
 gulp.task('watch', () => {
   gulp.watch(`${PATH.js}**/*.js`, ['lint', 'js']);
+  gulp.watch(`${PATH.js}**/*.jsx`, ['lint', 'js']);
 });
 
 gulp.task('default', ['server', 'watch']);

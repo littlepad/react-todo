@@ -4,7 +4,7 @@ export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [],
     };
   }
 
@@ -13,6 +13,6 @@ export default class TodoList extends React.Component {
       <div>
         hoge
       </div>
-     )
+    );
   }
 }

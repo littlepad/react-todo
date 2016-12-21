@@ -10,5 +10,7 @@
     "sourceType": "module"
   },
   "globals": {},
-  "rules": {}
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
 }
