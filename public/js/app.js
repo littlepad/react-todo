@@ -21574,6 +21574,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _List = __webpack_require__(180);
+
+	var _List2 = _interopRequireDefault(_List);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21591,7 +21595,7 @@
 	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
 	    _this.state = {
-	      todos: []
+	      todos: ['todo1', 'todo2', 'todo3']
 	    };
 	    return _this;
 	  }
@@ -21599,11 +21603,7 @@
 	  _createClass(TodoList, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'hoge'
-	      );
+	      return _react2.default.createElement(_List2.default, { todos: this.state.todos });
 	    }
 	  }]);
 
@@ -21611,6 +21611,41 @@
 	}(_react2.default.Component);
 
 	exports.default = TodoList;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = List;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function List(props) {
+	  var list = props.todos.map(function (todo, index) {
+	    return _react2.default.createElement(
+	      'li',
+	      { key: index },
+	      todo
+	    );
+	  });
+	  return _react2.default.createElement(
+	    'ul',
+	    null,
+	    list
+	  );
+	}
+	List.propTypes = {
+	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired
+	};
 
 /***/ }
 /******/ ]);
