@@ -1,6 +1,6 @@
 import gulp from 'gulp';
-import PATH from './config';
 import eslint from 'gulp-eslint';
+import PATH from './config';
 
 export function lint() {
   return gulp.src([`${PATH.js}**/*.js`])
