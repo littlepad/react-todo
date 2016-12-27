@@ -2,7 +2,8 @@ import React from 'react';
 import Todo from './todo';
 
 export default function List(props) {
-  const list = props.todos.map((todo, index) => <Todo key={index} todo={todo} />);
+  const list = props.todos.map((todo, index) =>
+    <Todo key={index} id={todo.id} isDone={todo.isDone} text={todo.text} />);
   return (
     <ul>
       {list}
@@ -10,5 +11,5 @@ export default function List(props) {
   );
 }
 List.propTypes = {
-  todos: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };

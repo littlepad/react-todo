@@ -21595,7 +21595,7 @@
 	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
 	    _this.state = {
-	      todos: ['todo1', 'todo2', 'todo3']
+	      todos: [{ id: '00000', isDone: true, text: 'todo1' }, { id: '11111', isDone: false, text: 'todo2' }, { id: '22222', isDone: false, text: 'todo3' }]
 	    };
 	    return _this;
 	  }
@@ -21635,7 +21635,7 @@
 
 	function List(props) {
 	  var list = props.todos.map(function (todo, index) {
-	    return _react2.default.createElement(_todo2.default, { key: index, todo: todo });
+	    return _react2.default.createElement(_todo2.default, { key: index, id: todo.id, isDone: todo.isDone, text: todo.text });
 	  });
 	  return _react2.default.createElement(
 	    'ul',
@@ -21644,14 +21644,14 @@
 	  );
 	}
 	List.propTypes = {
-	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired
+	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.object).isRequired
 	};
 
 /***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21665,14 +21665,23 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Todo(props) {
+	  var id = "id" + props.id;
 	  return _react2.default.createElement(
-	    'li',
+	    "li",
 	    null,
-	    props.todo
+	    _react2.default.createElement(
+	      "label",
+	      { htmlFor: id },
+	      _react2.default.createElement("input", { type: "checkbox", checked: props.isDone, id: id }),
+	      " ",
+	      props.text
+	    )
 	  );
 	}
 	Todo.propTypes = {
-	  todo: _react2.default.PropTypes.string.isRequired
+	  id: _react2.default.PropTypes.string.isRequired,
+	  isDone: _react2.default.PropTypes.bool.isRequired,
+	  text: _react2.default.PropTypes.string.isRequired
 	};
 
 /***/ }

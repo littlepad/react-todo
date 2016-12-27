@@ -5,7 +5,11 @@ export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: ['todo1', 'todo2', 'todo3'],
+      todos: [
+        { id: '00000', isDone: true, text: 'todo1' },
+        { id: '11111', isDone: false, text: 'todo2' },
+        { id: '22222', isDone: false, text: 'todo3' },
+      ],
     };
   }
 
