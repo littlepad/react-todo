@@ -21627,15 +21627,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _todo = __webpack_require__(181);
+
+	var _todo2 = _interopRequireDefault(_todo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function List(props) {
 	  var list = props.todos.map(function (todo, index) {
-	    return _react2.default.createElement(
-	      'li',
-	      { key: index },
-	      todo
-	    );
+	    return _react2.default.createElement(_todo2.default, { key: index, todo: todo });
 	  });
 	  return _react2.default.createElement(
 	    'ul',
@@ -21645,6 +21645,34 @@
 	}
 	List.propTypes = {
 	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired
+	};
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = Todo;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Todo(props) {
+	  return _react2.default.createElement(
+	    'li',
+	    null,
+	    props.todo
+	  );
+	}
+	Todo.propTypes = {
+	  todo: _react2.default.PropTypes.string.isRequired
 	};
 
 /***/ }
