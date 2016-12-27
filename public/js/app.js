@@ -21574,9 +21574,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _List = __webpack_require__(180);
+	var _list = __webpack_require__(180);
 
-	var _List2 = _interopRequireDefault(_List);
+	var _list2 = _interopRequireDefault(_list);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21603,7 +21603,7 @@
 	  _createClass(TodoList, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_List2.default, { todos: this.state.todos });
+	      return _react2.default.createElement(_list2.default, { todos: this.state.todos });
 	    }
 	  }]);
 

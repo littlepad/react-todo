@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './List';
+import List from './list';
 
 export default class TodoList extends React.Component {
   constructor(props) {
