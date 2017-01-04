@@ -3,22 +3,19 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: `${PATH.js}app.js`
+    app: `${PATH.js}app.jsx`
   },
   output: {
     path: require('path').resolve(`${PATH.public}js/`),
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js'],
-    modulesDirectories: ['node_modules'],
-    alias: {
-    }
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
         loader: "babel-loader"
       }
