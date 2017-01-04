@@ -7,15 +7,14 @@ export default function Todo(props) {
   }
 
   return (
-    <li>
+    <li className={classNames({ isDone: props.isDone })}>
       {props.text}
       <button
-        className={classNames({ isDone: props.isDone })}
+        disabled={classNames({ isDone: props.isDone })}
         onClick={setDone}
       >
         done
       </button>
-      {props.isDone.toString()}
     </li>
   );
 }

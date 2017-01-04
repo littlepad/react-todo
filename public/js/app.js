@@ -21692,17 +21692,16 @@
 
 	  return _react2.default.createElement(
 	    'li',
-	    null,
+	    { className: (0, _classnames2.default)({ isDone: props.isDone }) },
 	    props.text,
 	    _react2.default.createElement(
 	      'button',
 	      {
-	        className: (0, _classnames2.default)({ isDone: props.isDone }),
+	        disabled: (0, _classnames2.default)({ isDone: props.isDone }),
 	        onClick: setDone
 	      },
 	      'done'
-	    ),
-	    props.isDone.toString()
+	    )
 	  );
 	}
 	Todo.propTypes = {
