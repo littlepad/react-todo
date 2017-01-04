@@ -21597,13 +21597,27 @@
 	    _this.state = {
 	      todos: [{ id: '00000', isDone: true, text: 'todo1' }, { id: '11111', isDone: false, text: 'todo2' }, { id: '22222', isDone: false, text: 'todo3' }]
 	    };
+
+	    _this.setDone = _this.setDone.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(TodoList, [{
+	    key: 'setDone',
+	    value: function setDone(id) {
+	      var tmpTodos = this.state.todos.map(function (todo) {
+	        var tmpTodo = todo;
+	        if (tmpTodo.id === id) {
+	          tmpTodo.isDone = true;
+	        }
+	        return tmpTodo;
+	      });
+	      this.setState({ todos: tmpTodos });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_list2.default, { todos: this.state.todos });
+	      return _react2.default.createElement(_list2.default, { todos: this.state.todos, setDone: this.setDone });
 	    }
 	  }]);
 
@@ -21635,7 +21649,9 @@
 
 	function List(props) {
 	  var list = props.todos.map(function (todo, index) {
-	    return _react2.default.createElement(_todo2.default, { key: index, id: todo.id, isDone: todo.isDone, text: todo.text });
+	    return _react2.default.createElement(_todo2.default, {
+	      key: index, id: todo.id, isDone: todo.isDone, text: todo.text, setDone: props.setDone
+	    });
 	  });
 	  return _react2.default.createElement(
 	    'ul',
@@ -21644,14 +21660,15 @@
 	  );
 	}
 	List.propTypes = {
-	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.object).isRequired
+	  todos: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.object).isRequired,
+	  setDone: _react2.default.PropTypes.func.isRequired
 	};
 
 /***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21662,27 +21679,92 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(182);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Todo(props) {
-	  var id = "id" + props.id;
+	  function setDone() {
+	    props.setDone(props.id);
+	  }
+
 	  return _react2.default.createElement(
-	    "li",
+	    'li',
 	    null,
+	    props.text,
 	    _react2.default.createElement(
-	      "label",
-	      { htmlFor: id },
-	      _react2.default.createElement("input", { type: "checkbox", checked: props.isDone, id: id }),
-	      " ",
-	      props.text
-	    )
+	      'button',
+	      {
+	        className: (0, _classnames2.default)({ isDone: props.isDone }),
+	        onClick: setDone
+	      },
+	      'done'
+	    ),
+	    props.isDone.toString()
 	  );
 	}
 	Todo.propTypes = {
 	  id: _react2.default.PropTypes.string.isRequired,
 	  isDone: _react2.default.PropTypes.bool.isRequired,
-	  text: _react2.default.PropTypes.string.isRequired
+	  text: _react2.default.PropTypes.string.isRequired,
+	  setDone: _react2.default.PropTypes.func.isRequired
 	};
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);
