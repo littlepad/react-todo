@@ -1,5 +1,5 @@
-const PATH = require('./gulp/config').default;
-const webpack = require('webpack');
+import PATH from './gulp/config';
+import webpack from 'webpack';
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       }
     ]
   }
