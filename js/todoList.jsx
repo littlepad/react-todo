@@ -1,5 +1,6 @@
 import React from 'react';
 import List from './list';
+import InputForm from './inputForm';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class TodoList extends React.Component {
     };
 
     this.setDone = this.setDone.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   setDone(id) {
@@ -26,9 +28,24 @@ export default class TodoList extends React.Component {
     this.setState({ todos: tmpTodos });
   }
 
+  addTodo(text) {
+    const tmpTodo = {
+      id: new Date().getTime().toString(),
+      isDone: false,
+      text: text,
+    };
+
+    const tmpTodos = this.state.todos;
+    tmpTodos.push(tmpTodo);
+    this.setState({ todos: tmpTodos });
+  }
+
   render() {
     return (
-      <List todos={this.state.todos} setDone={this.setDone} />
+      <div>
+        <List todos={this.state.todos} setDone={this.setDone} />
+        <InputForm addTodo={this.addTodo} />
+      </div>
     );
   }
 }
