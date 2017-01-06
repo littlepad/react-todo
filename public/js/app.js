@@ -21538,13 +21538,11 @@
 	    }
 	  }, {
 	    key: 'addTodo',
-	    value: function addTodo(text) {
-	      var tmpTodo = {
-	        id: new Date().getTime().toString(),
-	        isDone: false,
-	        text: text
-	      };
-
+	    value: function addTodo(txt) {
+	      var id = new Date().getTime().toString();
+	      var isDone = false;
+	      var text = txt;
+	      var tmpTodo = { id: id, isDone: isDone, text: text };
 	      var tmpTodos = this.state.todos;
 	      tmpTodos.push(tmpTodo);
 	      this.setState({ todos: tmpTodos });
@@ -21721,10 +21719,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21748,17 +21742,21 @@
 	  _createClass(InputForm, [{
 	    key: 'addTodo',
 	    value: function addTodo() {
-	      var text = _reactDom2.default.findDOMNode(this.refs.todo).value.trim();
+	      var text = this.todo.value.trim();
 	      if (text) this.props.addTodo(text);
-	      _reactDom2.default.findDOMNode(this.refs.todo).value = '';
+	      this.todo.value = '';
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('input', { type: 'text', placeholder: 'input your task', ref: 'todo' }),
+	        _react2.default.createElement('input', { type: 'text', placeholder: 'input your task', ref: function ref(node) {
+	            _this2.todo = node;
+	          } }),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.addTodo },

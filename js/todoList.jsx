@@ -28,13 +28,11 @@ export default class TodoList extends React.Component {
     this.setState({ todos: tmpTodos });
   }
 
-  addTodo(text) {
-    const tmpTodo = {
-      id: new Date().getTime().toString(),
-      isDone: false,
-      text: text,
-    };
-
+  addTodo(txt) {
+    const id = new Date().getTime().toString();
+    const isDone = false;
+    const text = txt;
+    const tmpTodo = { id, isDone, text };
     const tmpTodos = this.state.todos;
     tmpTodos.push(tmpTodo);
     this.setState({ todos: tmpTodos });

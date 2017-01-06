@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 export default class InputForm extends React.Component {
   constructor(props) {
@@ -8,15 +7,15 @@ export default class InputForm extends React.Component {
   }
 
   addTodo() {
-    const text = ReactDOM.findDOMNode(this.refs.todo).value.trim();
+    const text = this.todo.value.trim();
     if (text) this.props.addTodo(text);
-    ReactDOM.findDOMNode(this.refs.todo).value = '';
+    this.todo.value = '';
   }
 
   render() {
     return (
       <div>
-        <input type="text" placeholder="input your task" ref="todo" />
+        <input type="text" placeholder="input your task" ref={(node) => { this.todo = node; }} />
         <button onClick={this.addTodo}>add</button>
       </div>
     );
