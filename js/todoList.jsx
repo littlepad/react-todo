@@ -6,15 +6,15 @@ export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        { id: '00000', isDone: true, text: 'todo1' },
-        { id: '11111', isDone: false, text: 'todo2' },
-        { id: '22222', isDone: false, text: 'todo3' },
-      ],
+      todos: [],
     };
 
     this.setDone = this.setDone.bind(this);
     this.addTodo = this.addTodo.bind(this);
+  }
+
+  componentDidMount() {
+    this.getFromLocalStorage();
   }
 
   setDone(id) {
@@ -26,6 +26,20 @@ export default class TodoList extends React.Component {
       return tmpTodo;
     });
     this.setState({ todos: tmpTodos });
+    this.saveToLocalStorage();
+  }
+
+  getFromLocalStorage() {
+    let data = JSON.parse(localStorage.getItem('react-todo'));
+    if (!data) data = [];
+    this.setState({
+      todos: data,
+    });
+  }
+
+  saveToLocalStorage() {
+    localStorage.clear();
+    localStorage.setItem('react-todo', JSON.stringify(this.state.todos));
   }
 
   addTodo(txt) {
@@ -36,6 +50,7 @@ export default class TodoList extends React.Component {
     const tmpTodos = this.state.todos;
     tmpTodos.push(tmpTodo);
     this.setState({ todos: tmpTodos });
+    this.saveToLocalStorage();
   }
 
   render() {

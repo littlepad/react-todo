@@ -21516,7 +21516,7 @@
 	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
 	    _this.state = {
-	      todos: [{ id: '00000', isDone: true, text: 'todo1' }, { id: '11111', isDone: false, text: 'todo2' }, { id: '22222', isDone: false, text: 'todo3' }]
+	      todos: []
 	    };
 
 	    _this.setDone = _this.setDone.bind(_this);
@@ -21525,6 +21525,11 @@
 	  }
 
 	  _createClass(TodoList, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getFromLocalStorage();
+	    }
+	  }, {
 	    key: 'setDone',
 	    value: function setDone(id) {
 	      var tmpTodos = this.state.todos.map(function (todo) {
@@ -21535,6 +21540,22 @@
 	        return tmpTodo;
 	      });
 	      this.setState({ todos: tmpTodos });
+	      this.saveToLocalStorage();
+	    }
+	  }, {
+	    key: 'getFromLocalStorage',
+	    value: function getFromLocalStorage() {
+	      var data = JSON.parse(localStorage.getItem('react-todo'));
+	      if (!data) data = [];
+	      this.setState({
+	        todos: data
+	      });
+	    }
+	  }, {
+	    key: 'saveToLocalStorage',
+	    value: function saveToLocalStorage() {
+	      localStorage.clear();
+	      localStorage.setItem('react-todo', JSON.stringify(this.state.todos));
 	    }
 	  }, {
 	    key: 'addTodo',
@@ -21546,6 +21567,7 @@
 	      var tmpTodos = this.state.todos;
 	      tmpTodos.push(tmpTodo);
 	      this.setState({ todos: tmpTodos });
+	      this.saveToLocalStorage();
 	    }
 	  }, {
 	    key: 'render',
