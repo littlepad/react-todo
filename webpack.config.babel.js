@@ -1,5 +1,4 @@
 import PATH from './gulp/config';
-import webpack from 'webpack';
 
 module.exports = {
   entry: {
